@@ -3,23 +3,10 @@ import logo from './logo.svg';
 import './App.css';
 
 import StudentForm from './components/StudentForm';
+import ErrorBoundary from "./components/ErrorBoundary";
 
 class App extends Component {
-
-  state = {
-    hasError: false
-  };
-
-  componentDidCatch() {
-    this.setState({ hasError: true })
-  }
-
   render() {
-
-    if (this.state.hasError) {
-      return <h1>Oh no! Something went wrong!</h1>
-    }
-
     return (
       <div className="App">
         <header className="App-header">
@@ -27,7 +14,9 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
 
-        <StudentForm />
+        <ErrorBoundary>
+          <StudentForm />
+        </ErrorBoundary>
       </div>
     );
   }
